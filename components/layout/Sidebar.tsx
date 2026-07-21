@@ -1,114 +1,172 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
-  LayoutDashboard,
   Star,
-  Users,
+  UserPlus,
+  ClipboardCheck,
   Briefcase,
+  LayoutDashboard,
+  Users,
   School,
   BarChart3,
   FileText,
-  Settings,
   Bell,
+  Settings,
 } from "lucide-react";
 
-const menu = [
+const demoPages = [
   {
-    title: "Dashboard",
-    icon: LayoutDashboard,
-    href: "#",
-  },
-  {
-    title: "Premium Talent",
-    icon: Star,
+    name: "Premium Talent",
     href: "/premium-talent",
-    active: true,
+    icon: Star,
   },
   {
-    title: "Candidates",
-    icon: Users,
-    href: "#",
+    name: "Nominate Candidate",
+    href: "/nominations",
+    icon: UserPlus,
   },
   {
-    title: "Vacancies",
+    name: "Pending Approvals",
+    href: "/pending-approvals",
+    icon: ClipboardCheck,
+  },
+  {
+    name: "Match to Vacancy",
+    href: "/match",
     icon: Briefcase,
-    href: "#",
+  },
+];
+
+const placeholderPages = [
+  {
+    name: "Dashboard",
+    icon: LayoutDashboard,
   },
   {
-    title: "Schools",
+    name: "Candidates",
+    icon: Users,
+  },
+  {
+    name: "Schools",
     icon: School,
-    href: "#",
   },
   {
-    title: "Analytics",
+    name: "Analytics",
     icon: BarChart3,
-    href: "#",
   },
   {
-    title: "Reports",
+    name: "Reports",
     icon: FileText,
-    href: "#",
   },
   {
-    title: "Notifications",
+    name: "Notifications",
     icon: Bell,
-    href: "#",
   },
   {
-    title: "Settings",
+    name: "Settings",
     icon: Settings,
-    href: "#",
   },
 ];
 
 export default function Sidebar() {
-  return (
-    <aside className="w-72 bg-[#0F172A] text-white flex flex-col">
-      <div className="border-b border-slate-700 p-8">
-        <div className="text-3xl font-bold text-[#00A384]">
-          Teach East
-        </div>
+  const pathname = usePathname();
 
-        <p className="mt-2 text-sm text-slate-400">
-          Premium Talent
+  return (
+    <aside className="flex h-screen w-72 flex-col bg-[#0F172A] text-white">
+
+      <div className="border-b border-white/10 p-8">
+
+        <h1 className="text-4xl font-bold text-[#00A384]">
+          Teach East
+        </h1>
+
+        <p className="mt-2 text-sm text-gray-400">
+          Premium Talent Demo
         </p>
+
       </div>
 
-      <nav className="flex-1 p-5">
-        {menu.map((item) => {
-          const Icon = item.icon;
+      <nav className="flex-1 space-y-10 px-5 py-8">
 
-          return (
-            <Link
-              key={item.title}
-              href={item.href}
-              className={`mb-2 flex items-center gap-4 rounded-xl px-4 py-4 transition
-              ${
-                item.active
-                  ? "bg-[#00A384] text-white shadow-lg"
-                  : "text-slate-300 hover:bg-slate-800"
-              }`}
-            >
-              <Icon size={20} />
+        <div>
 
-              {item.title}
-            </Link>
-          );
-        })}
+          <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+            Demo Workflow
+          </p>
+
+          <div className="space-y-2">
+
+            {demoPages.map((item) => {
+              const Icon = item.icon;
+
+              const active = pathname === item.href;
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition ${
+                    active
+                      ? "bg-[#00A384] text-white shadow-lg"
+                      : "text-gray-300 hover:bg-white/10"
+                  }`}
+                >
+                  <Icon size={18} />
+                  {item.name}
+                </Link>
+              );
+            })}
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+            Other Modules
+          </p>
+
+          <div className="space-y-2">
+
+            {placeholderPages.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.name}
+                  className="flex cursor-not-allowed items-center gap-3 rounded-xl px-4 py-3 text-gray-500"
+                >
+                  <Icon size={18} />
+                  {item.name}
+                </div>
+              );
+            })}
+
+          </div>
+
+        </div>
+
       </nav>
 
-      <div className="border-t border-slate-700 p-6">
-        <div className="rounded-xl bg-slate-800 p-4">
-          <div className="text-sm text-slate-400">
-            Current Version
-          </div>
+      <div className="border-t border-white/10 p-5">
 
-          <div className="mt-1 font-semibold">
-            Concept v1.0
-          </div>
+        <div className="rounded-2xl bg-white/5 p-4">
+
+          <p className="text-xs text-gray-400">
+            Concept Version
+          </p>
+
+          <p className="mt-1 font-semibold">
+            Premium Talent v1.0
+          </p>
+
         </div>
+
       </div>
+
     </aside>
   );
 }
