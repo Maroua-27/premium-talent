@@ -2,22 +2,18 @@ export interface Candidate {
   id: number;
 
   name: string;
-
   avatar: string;
 
   role: string;
+  subject: string;
 
   nationality: string;
-
   nationalityFlag: string;
 
   currentLocation: string;
-
   currentLocationFlag: string;
 
-  curriculum: "British" | "American" | "IB";
-
-  subject: string;
+  curriculum: string;
 
   experience: number;
 
@@ -31,5 +27,28 @@ export interface Candidate {
 
   lastUpdated: string;
 
-  status: "Ready" | "Review" | "Pending";
+  status: string;
+
+  // NEW
+
+  age: number;
+
+  dependents: number;
+
+  noticePeriod: string;
+
+  preferredCountries: string[];
+
+  premiumScore: number;
+
+  cvSummary: string;
+
+  registrationNotes: string;
+
+  history: string[];
+
+  matchedJobs: {
+    school: string;
+    score: number;
+  }[];
 }

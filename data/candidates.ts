@@ -19,6 +19,15 @@ export const candidates: Candidate[] = [
     placementBarrier: "Malaysia only",
     lastUpdated: "2 days ago",
     status: "Ready",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 
   {
@@ -39,6 +48,15 @@ export const candidates: Candidate[] = [
     placementBarrier: "Salary expectations",
     lastUpdated: "Today",
     status: "Ready",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 
   {
@@ -59,6 +77,15 @@ export const candidates: Candidate[] = [
     placementBarrier: "Notice period",
     lastUpdated: "Yesterday",
     status: "Review",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 
   {
@@ -79,6 +106,15 @@ export const candidates: Candidate[] = [
     placementBarrier: "China only",
     lastUpdated: "3 days ago",
     status: "Ready",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 
   {
@@ -99,6 +135,15 @@ export const candidates: Candidate[] = [
     placementBarrier: "January start",
     lastUpdated: "5 days ago",
     status: "Pending",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 
   {
@@ -119,6 +164,15 @@ export const candidates: Candidate[] = [
     placementBarrier: "IB schools only",
     lastUpdated: "Today",
     status: "Ready",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 
   {
@@ -139,6 +193,15 @@ export const candidates: Candidate[] = [
     placementBarrier: "Awaiting references",
     lastUpdated: "Today",
     status: "Review",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 
   {
@@ -159,5 +222,14 @@ export const candidates: Candidate[] = [
     placementBarrier: "Visa required",
     lastUpdated: "Yesterday",
     status: "Pending",
+    age: 0,
+    dependents: 0,
+    noticePeriod: "",
+    preferredCountries: [],
+    premiumScore: 0,
+    cvSummary: "",
+    registrationNotes: "",
+    history: [],
+    matchedJobs: []
   },
 ];

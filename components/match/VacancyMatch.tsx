@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import {
   ChevronLeft,
@@ -9,6 +9,8 @@ import {
   Clock,
   Wallet,
   CheckCircle2,
+  User,
+  Briefcase,
 } from "lucide-react";
 
 import { matchCandidates } from "@/data/candidateData";
@@ -16,42 +18,83 @@ import { matchCandidates } from "@/data/candidateData";
 const vacancies = [
   {
     id: 1,
+    code: "TE-10482",
     school: "Kings School Malaysia",
     role: "Primary Teacher",
+    owner: "Naima",
     location: "Kuala Lumpur, Malaysia",
     salary: "USD 3,800",
     fit: "Strong Fit",
+    status: "Open",
   },
   {
     id: 2,
+    code: "TE-10501",
     school: "ABC International School",
     role: "Year 3 Teacher",
+    owner: "Luke",
     location: "Singapore",
     salary: "USD 4,000",
     fit: "Strong Fit",
+    status: "Open",
   },
   {
     id: 3,
+    code: "TE-10465",
     school: "Doha British School",
     role: "KS2 Teacher",
+    owner: "Lubna",
     location: "Doha, Qatar",
     salary: "USD 4,200",
     fit: "Good Fit",
+    status: "Open",
   },
   {
     id: 4,
+    code: "TE-10430",
     school: "British International School",
     role: "Primary Teacher",
+    owner: "Neve",
     location: "Bangkok, Thailand",
     salary: "USD 3,900",
     fit: "Good Fit",
+    status: "Open",
   },
+];
+
+const owners = [
+  "All Jobs",
+  "My Jobs",
+  "Luke",
+  "Naima",
+  "Lubna",
+  "Neve",
 ];
 
 export default function VacancyMatch() {
   const [currentCandidate, setCurrentCandidate] = useState(0);
 
+  const [selectedOwner, setSelectedOwner] =
+    useState("All Jobs");
+
   const candidate = matchCandidates[currentCandidate];
+
+  const filteredVacancies = useMemo(() => {
+    if (selectedOwner === "All Jobs") {
+      return vacancies;
+    }
+
+    if (selectedOwner === "My Jobs") {
+      // Demo assumes current user is Luke
+      return vacancies.filter(
+        (job) => job.owner === "Luke"
+      );
+    }
+
+    return vacancies.filter(
+      (job) => job.owner === selectedOwner
+    );
+  }, [selectedOwner]);
 
   const previousCandidate = () => {
     if (currentCandidate > 0) {
@@ -87,7 +130,7 @@ export default function VacancyMatch() {
 
         <button
           onClick={previousCandidate}
-          disabled={currentCandidate === matchCandidates.length - 1}
+          disabled={currentCandidate === 0}
           className="flex items-center gap-2 rounded-xl border border-gray-200 px-4 py-3 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronLeft size={18} />
@@ -102,14 +145,18 @@ export default function VacancyMatch() {
           </h2>
 
           <p className="mt-1 text-gray-500">
-            Candidate {currentCandidate + 1} of {matchCandidates.length}
+            Candidate {currentCandidate + 1} of{" "}
+            {matchCandidates.length}
           </p>
 
         </div>
 
         <button
           onClick={nextCandidate}
-          disabled={currentCandidate === matchCandidates.length - 1}
+          disabled={
+            currentCandidate ===
+            matchCandidates.length - 1
+          }
           className="flex items-center gap-2 rounded-xl bg-[#00A384] px-5 py-3 font-semibold text-white transition hover:bg-[#008d73] disabled:cursor-not-allowed disabled:opacity-40"
         >
           Next Candidate
@@ -118,8 +165,7 @@ export default function VacancyMatch() {
         </button>
 
       </div>
-
-      {/* Candidate */}
+            {/* Candidate */}
 
       <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
 
@@ -156,7 +202,7 @@ export default function VacancyMatch() {
 
               <span className="text-gray-300">•</span>
 
-              <span className="text-[#00A384] font-medium">
+              <span className="font-medium text-[#00A384]">
                 {candidate.curriculum} Curriculum
               </span>
 
@@ -238,37 +284,62 @@ export default function VacancyMatch() {
 
       </div>
 
-            {/* Vacancies */}
+      {/* Available Vacancies */}
 
-      <div>
+      <div className="space-y-6">
 
-        <h2 className="mb-6 text-2xl font-bold">
-          Available Vacancies
-        </h2>
+        <div className="flex items-center justify-between">
+
+          <h2 className="text-2xl font-bold">
+            Available Vacancies
+          </h2>
+
+          <div className="flex items-center gap-3">
+
+            <span className="text-sm font-medium text-gray-500">
+              Owner
+            </span>
+
+            <select
+              value={selectedOwner}
+              onChange={(e) =>
+                setSelectedOwner(e.target.value)
+              }
+              className="rounded-xl border border-gray-300 px-4 py-2"
+            >
+              {owners.map((owner) => (
+                <option
+                  key={owner}
+                  value={owner}
+                >
+                  {owner}
+                </option>
+              ))}
+            </select>
+
+          </div>
+
+        </div>
 
         <div className="space-y-5">
 
-          {vacancies.map((job) => (
+          {filteredVacancies.map((job) => (
 
             <div
               key={job.id}
-              className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:border-[#00A384] hover:shadow-md"
+              className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-[#00A384]"
             >
 
               <div className="flex items-start justify-between">
 
                 <div>
 
-                  <h3 className="text-xl font-bold text-gray-900">
+                  <h3 className="text-xl font-bold">
                     {job.role}
                   </h3>
 
                   <p className="mt-1 text-gray-600">
                     {job.school}
-                  </p>
-
-                  <p className="mt-2 text-sm text-gray-500">
-                    {job.location}
                   </p>
 
                 </div>
@@ -285,21 +356,73 @@ export default function VacancyMatch() {
 
               </div>
 
-              <div className="mt-6 flex items-center justify-between">
+              <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 
-                <div className="space-y-1">
+                <div>
 
-                  <p className="text-sm text-gray-500">
-                    Salary
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+
+                    <Briefcase size={16} />
+
+                    Job Code
+
+                  </div>
+
+                  <p className="mt-1 font-semibold">
+                    {job.code}
                   </p>
 
-                  <p className="font-semibold">
+                </div>
+
+                <div>
+
+                  <div className="flex items-center gap-2 text-sm text-gray-500">
+
+                    <User size={16} />
+
+                    Owner
+
+                  </div>
+
+                  <span className="mt-1 inline-flex rounded-full bg-[#00A384]/10 px-3 py-1 text-sm font-semibold text-[#00A384]">
+                    {job.owner}
+                  </span>
+
+                </div>
+
+                <div>
+
+                  <div className="text-sm text-gray-500">
+                    Location
+                  </div>
+
+                  <p className="mt-1 font-semibold">
+                    {job.location}
+                  </p>
+
+                </div>
+
+                <div>
+
+                  <div className="text-sm text-gray-500">
+                    Salary
+                  </div>
+
+                  <p className="mt-1 font-semibold">
                     {job.salary}
                   </p>
 
                 </div>
 
-                <button className="flex items-center gap-2 rounded-xl bg-[#00A384] px-6 py-3 font-semibold text-white transition hover:opacity-90">
+              </div>
+
+              <div className="mt-6 flex items-center justify-between border-t pt-5">
+
+                <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+                  {job.status}
+                </span>
+
+                <button className="flex items-center gap-2 rounded-xl bg-[#00A384] px-6 py-3 font-semibold text-white transition hover:bg-[#008d73]">
 
                   <CheckCircle2 size={18} />
 

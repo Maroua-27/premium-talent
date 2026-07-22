@@ -9,10 +9,12 @@ import BarrierBadge from "./BarrierBadge";
 
 interface Props {
   candidate: Candidate;
+  onOpen: () => void;
 }
 
 export default function CandidateRow({
   candidate,
+  onOpen,
 }: Props) {
   const expired = candidate.profileDaysRemaining <= 0;
 
@@ -57,7 +59,7 @@ export default function CandidateRow({
 
               <span className="text-gray-300">•</span>
 
-              <span className="text-xs text-[#00A384] font-medium">
+              <span className="text-xs font-medium text-[#00A384]">
                 {candidate.curriculum} Curriculum
               </span>
             </div>
@@ -65,7 +67,7 @@ export default function CandidateRow({
         </div>
       </td>
 
-      {/* Profile Status */}
+      {/* Profile */}
       <td>
         <CandidateScore
           days={candidate.profileDaysRemaining}
@@ -86,9 +88,9 @@ export default function CandidateRow({
         />
       </td>
 
-      {/* Current Location */}
+      {/* Location */}
       <td>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 whitespace-nowrap">
           <Image
             src={candidate.currentLocationFlag}
             alt={candidate.currentLocation}
@@ -104,7 +106,7 @@ export default function CandidateRow({
       </td>
 
       {/* Salary */}
-      <td className="font-medium">
+      <td className="whitespace-nowrap text-right font-semibold">
         {candidate.expectedSalary}
       </td>
 
@@ -116,7 +118,7 @@ export default function CandidateRow({
       </td>
 
       {/* Updated */}
-      <td className="text-sm text-gray-500">
+      <td className="whitespace-nowrap text-sm text-gray-500">
         {candidate.lastUpdated}
       </td>
 
@@ -133,7 +135,10 @@ export default function CandidateRow({
               Match
             </button>
 
-            <button className="rounded-xl border border-gray-200 p-2 hover:bg-gray-100">
+            <button
+              onClick={onOpen}
+              className="rounded-xl border border-gray-200 p-2 transition hover:bg-gray-100"
+            >
               <MoreHorizontal size={18} />
             </button>
           </div>
