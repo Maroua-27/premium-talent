@@ -4,15 +4,8 @@ import {
   UserPlus,
   ClipboardCheck,
   Briefcase,
+  ShieldCheck,
   ArrowRight,
-  Users,
- School,
-  FileText,
-  BarChart3,
-  Bell,
-  Settings,
-  Building2,
-  CalendarDays,
 } from "lucide-react";
 
 const pages = [
@@ -23,7 +16,6 @@ const pages = [
     href: "/premium-talent",
     icon: Star,
     color: "bg-emerald-500",
-    live: true,
   },
   {
     title: "Nominate Candidate",
@@ -32,16 +24,14 @@ const pages = [
     href: "/nominations",
     icon: UserPlus,
     color: "bg-sky-500",
-    live: true,
   },
   {
     title: "Pending Approvals",
     description:
-      "Luke reviews and approves Premium Talent nominations.",
+      "Review and approve consultant nominations before they enter the Premium Talent Pool.",
     href: "/pending-approvals",
     icon: ClipboardCheck,
     color: "bg-amber-500",
-    live: true,
   },
   {
     title: "Match to Vacancy",
@@ -50,91 +40,14 @@ const pages = [
     href: "/match",
     icon: Briefcase,
     color: "bg-violet-500",
-    live: true,
   },
   {
-    title: "Overview",
+    title: "Eligibility Rules",
     description:
-      "Platform overview and workflow.",
-    href: "/overview",
-    icon: BarChart3,
-    color: "bg-cyan-500",
-    live: true,
-  },
-
-  // Future Modules
-
-  {
-    title: "Candidates",
-    description:
-      "Complete Teach East candidate database.",
-    href: "#",
-    icon: Users,
-    color: "bg-slate-500",
-    live: false,
-  },
-  {
-    title: "Vacancies",
-    description:
-      "Manage vacancies and consultant assignments.",
-    href: "#",
-    icon: FileText,
-    color: "bg-rose-500",
-    live: false,
-  },
-  {
-    title: "Schools",
-    description:
-      "Partner schools and recruitment history.",
-    href: "#",
-    icon: School,
-    color: "bg-indigo-500",
-    live: false,
-  },
-  {
-    title: "Clients",
-    description:
-      "Client schools and relationships.",
-    href: "#",
-    icon: Building2,
-    color: "bg-pink-500",
-    live: false,
-  },
-  {
-    title: "Interviews",
-    description:
-      "Interview scheduling and feedback.",
-    href: "#",
-    icon: CalendarDays,
-    color: "bg-orange-500",
-    live: false,
-  },
-  {
-    title: "Analytics",
-    description:
-      "Recruitment insights and reporting.",
-    href: "#",
-    icon: BarChart3,
-    color: "bg-cyan-500",
-    live: false,
-  },
-  {
-    title: "Notifications",
-    description:
-      "Approvals, reminders and activity.",
-    href: "#",
-    icon: Bell,
-    color: "bg-yellow-500",
-    live: false,
-  },
-  {
-    title: "Settings",
-    description:
-      "Platform settings and permissions.",
-    href: "#",
-    icon: Settings,
-    color: "bg-gray-600",
-    live: false,
+      "Configure Premium Talent eligibility requirements.",
+    href: "/settings",
+    icon: ShieldCheck,
+    color: "bg-teal-500",
   },
 ];
 
@@ -150,73 +63,63 @@ export default function Home() {
           </p>
 
           <h1 className="mt-4 text-6xl font-bold text-gray-900">
-            Recruitment Platform
+            Premium Talent Demo
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-            Interactive prototype showcasing Teach East&#39;s Premium Talent
-            recruitment workflow from nomination through placement.
+            Interactive prototype demonstrating Teach East&#39;s Premium Talent workflow
+            from consultant nomination through approval, matching and placement.
           </p>
 
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-5">
 
           {pages.map((page) => {
+
             const Icon = page.icon;
 
             return (
-              <div
+
+              <Link
                 key={page.title}
-                className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm"
+                href={page.href}
+                className="group rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
+
                 <div
                   className={`flex h-14 w-14 items-center justify-center rounded-2xl text-white ${page.color}`}
                 >
                   <Icon size={26} />
                 </div>
 
-                <h2 className="mt-6 text-2xl font-bold">
+                <h2 className="mt-6 text-2xl font-bold text-gray-900">
                   {page.title}
                 </h2>
 
                 <p className="mt-4 leading-7 text-gray-600">
                   {page.description}
-                                </p>
+                </p>
+                                <div className="mt-8 flex items-center font-semibold text-[#00A384]">
 
-                <div className="mt-8">
+                  Open Module
 
-                  {page.live ? (
-
-                    <Link
-                      href={page.href}
-                      className="inline-flex items-center font-semibold text-[#00A384]"
-                    >
-                      Open Module
-
-                      <ArrowRight
-                        className="ml-2 transition group-hover:translate-x-1"
-                        size={18}
-                      />
-
-                    </Link>
-
-                  ) : (
-
-                    <span className="inline-flex rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-500">
-                      Coming Soon
-                    </span>
-
-                  )}
+                  <ArrowRight
+                    className="ml-2 transition group-hover:translate-x-1"
+                    size={18}
+                  />
 
                 </div>
 
-              </div>
+              </Link>
 
             );
+
           })}
 
         </div>
+
+        {/* Workflow */}
 
         <div className="mt-20 rounded-3xl bg-[#0F172A] p-10 text-white">
 
@@ -224,7 +127,11 @@ export default function Home() {
             Premium Talent Workflow
           </h2>
 
-          <div className="mt-8 grid gap-8 md:grid-cols-4">
+          <p className="mt-3 text-gray-300">
+            End-to-end process for identifying, approving and placing Teach East&#39;s highest-quality candidates.
+          </p>
+
+          <div className="mt-10 grid gap-8 md:grid-cols-5">
 
             <div>
 
@@ -233,11 +140,11 @@ export default function Home() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                Nominate
+                Nominate Candidate
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Consultants nominate outstanding candidates.
+                Consultants submit exceptional teachers for Premium Talent.
               </p>
 
             </div>
@@ -249,11 +156,11 @@ export default function Home() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                Approve
+                Manager Approval
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Luke reviews and approves Premium Talent nominations.
+                Luke reviews each nomination before approval.
               </p>
 
             </div>
@@ -265,11 +172,11 @@ export default function Home() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                Premium Pool
+                Premium Talent Pool
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Candidates become part of the verified Premium Talent Pool.
+                Approved candidates become part of the exclusive talent pool.
               </p>
 
             </div>
@@ -281,11 +188,27 @@ export default function Home() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                Match
+                Match to Vacancy
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Premium teachers are matched to the best vacancies.
+                Recruiters match Premium Talent with suitable vacancies.
+              </p>
+
+            </div>
+
+            <div>
+
+              <div className="text-5xl font-bold text-[#00A384]">
+                5
+              </div>
+
+              <h3 className="mt-4 font-semibold">
+                Client Submission
+              </h3>
+
+              <p className="mt-2 text-sm text-gray-300">
+                The shortlisted candidate is submitted to the client school.
               </p>
 
             </div>
