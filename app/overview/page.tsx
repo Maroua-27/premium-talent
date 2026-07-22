@@ -31,7 +31,7 @@ const modules = [
   {
     title: "Pending Approvals",
     description:
-      "Luke reviews Premium Talent nominations.",
+      "Manager reviews Premium Talent nominations.",
     href: "/pending-approvals",
     icon: ClipboardCheck,
     color: "bg-amber-500",
@@ -196,7 +196,7 @@ export default function OverviewPage() {
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Luke reviews and approves the nomination.
+                Manager reviews and approves the nomination.
               </p>
 
             </div>
