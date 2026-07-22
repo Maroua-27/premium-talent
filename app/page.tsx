@@ -160,7 +160,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Luke reviews each nomination before approval.
+                Manager reviews Premium Talent nominations.
               </p>
 
             </div>
