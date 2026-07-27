@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   Star,
   UserPlus,
-  ClipboardCheck,
   Briefcase,
   ShieldCheck,
   ArrowRight,
@@ -10,7 +9,7 @@ import {
 
 const pages = [
   {
-    title: "Premium Talent Pool",
+    title: "Premium Talent",
     description:
       "Browse Teach East's curated premium educators ready for international placement.",
     href: "/premium-talent",
@@ -18,25 +17,17 @@ const pages = [
     color: "bg-emerald-500",
   },
   {
-    title: "Nominate Candidate",
+    title: "Add Candidate",
     description:
-      "Submit a consultant nomination into the Premium Talent Programme.",
+      "Add qualified teachers directly to the Premium Talent Pool after completing the eligibility checklist.",
     href: "/nominations",
     icon: UserPlus,
     color: "bg-sky-500",
   },
   {
-    title: "Pending Approvals",
-    description:
-      "Review and approve consultant nominations before they enter the Premium Talent Pool.",
-    href: "/pending-approvals",
-    icon: ClipboardCheck,
-    color: "bg-amber-500",
-  },
-  {
     title: "Match to Vacancy",
     description:
-      "Match Premium Talent candidates to suitable vacancies.",
+      "Match Premium Talent candidates to suitable international vacancies.",
     href: "/match",
     icon: Briefcase,
     color: "bg-violet-500",
@@ -44,7 +35,7 @@ const pages = [
   {
     title: "Eligibility Rules",
     description:
-      "Configure Premium Talent eligibility requirements.",
+      "Configure and review the Premium Talent eligibility requirements.",
     href: "/settings",
     icon: ShieldCheck,
     color: "bg-teal-500",
@@ -54,6 +45,7 @@ const pages = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#F6F8FB]">
+
       <div className="mx-auto max-w-7xl px-8 py-20">
 
         <div className="text-center">
@@ -67,13 +59,16 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-            Interactive prototype demonstrating Teach East&#39;s Premium Talent workflow
-            from consultant nomination through approval, matching and placement.
+            Interactive prototype demonstrating Teach East&apos;s Premium Talent
+            workflow from candidate onboarding through matching and school
+            submission.
           </p>
 
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-5">
+        {/* Modules */}
+
+        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
 
           {pages.map((page) => {
 
@@ -100,7 +95,8 @@ export default function Home() {
                 <p className="mt-4 leading-7 text-gray-600">
                   {page.description}
                 </p>
-                                <div className="mt-8 flex items-center font-semibold text-[#00A384]">
+
+                <div className="mt-8 flex items-center font-semibold text-[#00A384]">
 
                   Open Module
 
@@ -128,7 +124,8 @@ export default function Home() {
           </h2>
 
           <p className="mt-3 text-gray-300">
-            End-to-end process for identifying, approving and placing Teach East&#39;s highest-quality candidates.
+            End-to-end process for identifying, maintaining and placing
+            Teach East&apos;s highest-quality candidates.
           </p>
 
           <div className="mt-10 grid gap-8 md:grid-cols-5">
@@ -140,11 +137,12 @@ export default function Home() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                Nominate Candidate
+                Add Candidate
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Consultants submit exceptional teachers for Premium Talent.
+                Recruiters add qualified teachers directly into the Premium
+                Talent Pool after completing the eligibility checklist.
               </p>
 
             </div>
@@ -156,16 +154,16 @@ export default function Home() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                Manager Approval
+                Eligibility Check
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Manager reviews Premium Talent nominations.
+                Verify every Premium Talent requirement before the candidate
+                is added to the programme.
               </p>
 
             </div>
-
-            <div>
+                        <div>
 
               <div className="text-5xl font-bold text-[#00A384]">
                 3
@@ -176,7 +174,9 @@ export default function Home() {
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Approved candidates become part of the exclusive talent pool.
+                Qualified candidates immediately join the Premium Talent Pool,
+                where they remain active and enter a 40-day profile review
+                cycle.
               </p>
 
             </div>
@@ -192,7 +192,8 @@ export default function Home() {
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Recruiters match Premium Talent with suitable vacancies.
+                Recruiters identify the most suitable Premium Talent candidates
+                using curriculum, availability and recruiter insights.
               </p>
 
             </div>
@@ -204,11 +205,12 @@ export default function Home() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                Client Submission
+                School Submission
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                The shortlisted candidate is submitted to the client school.
+                Shortlisted candidates are submitted to partner schools while
+                their recruitment progress continues to be tracked.
               </p>
 
             </div>
