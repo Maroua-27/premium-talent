@@ -9,12 +9,13 @@ export default function NominationsPage() {
         <div className="mb-8">
 
           <h1 className="text-4xl font-bold text-gray-900">
-            Nominate Candidate
+            Add Candidate
           </h1>
 
           <p className="mt-3 text-gray-500">
-            Submit a candidate for inclusion in the Teach East Premium Talent Programme.
-            Every nomination is reviewed by a manager before approval.
+            Add a candidate to the Teach East Premium Talent Programme.
+            Complete the eligibility checklist, add any recruiter notes,
+            and include the candidate in the Premium Talent Pool.
           </p>
 
         </div>

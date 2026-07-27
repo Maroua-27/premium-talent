@@ -6,7 +6,6 @@ import {
   Home,
   Star,
   UserPlus,
-  ClipboardCheck,
   Briefcase,
   ShieldCheck,
   LayoutDashboard,
@@ -29,14 +28,9 @@ const demoPages = [
     icon: Star,
   },
   {
-    name: "Nominate Candidate",
+    name: "Add Candidate",
     href: "/nominations",
     icon: UserPlus,
-  },
-  {
-    name: "Pending Approvals",
-    href: "/pending-approvals",
-    icon: ClipboardCheck,
   },
   {
     name: "Match to Vacancy",
@@ -96,7 +90,7 @@ export default function Sidebar() {
         </Link>
 
         <p className="mt-2 text-sm text-gray-400">
-          Recruitment Platform
+          Premium Talent Module
         </p>
 
       </div>
@@ -137,12 +131,12 @@ export default function Sidebar() {
 
         </div>
 
-        {/* Future Modules */}
+        {/* Future Platform */}
 
         <div>
 
           <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
-            Other Modules
+            Future Platform
           </p>
 
           <div className="space-y-2">
@@ -178,7 +172,7 @@ export default function Sidebar() {
           </p>
 
           <p className="mt-1 font-semibold">
-            Premium Talent v1.0
+            Premium Talent Module
           </p>
 
           <p className="mt-1 text-xs text-gray-500">

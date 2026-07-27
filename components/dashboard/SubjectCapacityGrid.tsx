@@ -3,32 +3,32 @@ import SubjectCard from "./SubjectCard";
 const subjects = [
   {
     subject: "Primary",
-    current: 42,
-    max: 50,
+    count: 42,
   },
   {
     subject: "English",
-    current: 38,
-    max: 50,
+    count: 38,
   },
   {
     subject: "Mathematics",
-    current: 31,
-    max: 50,
+    count: 31,
   },
   {
     subject: "Science",
-    current: 27,
-    max: 50,
+    count: 27,
   },
   {
     subject: "Leadership",
-    current: 14,
-    max: 50,
+    count: 14,
   },
 ];
 
 export default function SubjectCapacityGrid() {
+  const totalCandidates = subjects.reduce(
+    (total, subject) => total + subject.count,
+    0
+  );
+
   return (
     <div className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm">
 
@@ -37,17 +37,18 @@ export default function SubjectCapacityGrid() {
         <div>
 
           <h2 className="text-xl font-bold">
-            Premium Talent Pool Capacity
+            Premium Talent by Subject
           </h2>
 
           <p className="mt-1 text-sm text-gray-500">
-            Maximum of 50 approved candidates per subject.
+            Premium candidates are grouped by subject with no limit on the
+            number of qualified teachers in each category.
           </p>
 
         </div>
 
         <span className="rounded-full bg-[#E8F8F4] px-4 py-2 text-sm font-semibold text-[#00A384]">
-          152 / 250 Filled
+          {totalCandidates} Premium Candidates
         </span>
 
       </div>
@@ -55,10 +56,7 @@ export default function SubjectCapacityGrid() {
       <div className="grid grid-cols-5 gap-5">
 
         {subjects.map((subject) => (
-          <SubjectCard
-            key={subject.subject}
-            {...subject}
-          />
+          <SubjectCard key={subject.subject} {...subject} />
         ))}
 
       </div>

@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   Star,
   UserPlus,
-  ClipboardCheck,
   Briefcase,
   ShieldCheck,
   Users,
@@ -21,25 +20,17 @@ const modules = [
     color: "bg-emerald-500",
   },
   {
-    title: "Nominate Candidate",
+    title: "Add Candidate",
     description:
-      "Submit consultants' nominations for review.",
+      "Add a qualified teacher directly into the Premium Talent Programme.",
     href: "/nominations",
     icon: UserPlus,
     color: "bg-sky-500",
   },
   {
-    title: "Pending Approvals",
-    description:
-      "Manager reviews Premium Talent nominations.",
-    href: "/pending-approvals",
-    icon: ClipboardCheck,
-    color: "bg-amber-500",
-  },
-  {
     title: "Match to Vacancy",
     description:
-      "Submit Premium Talent candidates to vacancies.",
+      "Match Premium Talent candidates to suitable vacancies.",
     href: "/match",
     icon: Briefcase,
     color: "bg-violet-500",
@@ -47,7 +38,7 @@ const modules = [
   {
     title: "Eligibility Rules",
     description:
-      "Configure Premium Talent requirements.",
+      "Configure Premium Talent eligibility requirements.",
     href: "/settings",
     icon: ShieldCheck,
     color: "bg-teal-500",
@@ -57,6 +48,7 @@ const modules = [
 export default function OverviewPage() {
   return (
     <main className="min-h-screen bg-[#F6F8FB]">
+
       <div className="mx-auto max-w-7xl px-8 py-10">
 
         <div className="mb-12">
@@ -66,14 +58,16 @@ export default function OverviewPage() {
           </p>
 
           <h1 className="mt-3 text-5xl font-bold">
-            Recruitment Platform
+            Premium Talent
           </h1>
 
           <p className="mt-4 text-lg text-gray-600">
-            Premium Talent Module Prototype
+            Interactive prototype for managing Teach East&apos;s highest-quality candidates.
           </p>
 
         </div>
+
+        {/* Statistics */}
 
         <div className="grid gap-6 md:grid-cols-4">
 
@@ -85,8 +79,8 @@ export default function OverviewPage() {
           />
 
           <StatCard
-            title="Pending Approvals"
-            value="12"
+            title="40-Day Reviews Due"
+            value="8"
             icon={Clock3}
             color="text-amber-500"
           />
@@ -107,13 +101,15 @@ export default function OverviewPage() {
 
         </div>
 
+        {/* Modules */}
+
         <div className="mt-14">
 
           <h2 className="mb-6 text-3xl font-bold">
             Premium Talent Modules
           </h2>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
 
             {modules.map((module) => {
 
@@ -161,11 +157,19 @@ export default function OverviewPage() {
           </div>
 
         </div>
-                <div className="mt-16 rounded-3xl bg-[#0F172A] p-10 text-white">
+
+        {/* Workflow */}
+
+        <div className="mt-16 rounded-3xl bg-[#0F172A] p-10 text-white">
 
           <h2 className="text-3xl font-bold">
             Premium Talent Workflow
           </h2>
+
+          <p className="mt-3 text-gray-300">
+            A simplified workflow for identifying, maintaining and placing
+            Teach East&apos;s highest-quality candidates.
+          </p>
 
           <div className="mt-8 grid gap-8 md:grid-cols-5">
 
@@ -176,11 +180,12 @@ export default function OverviewPage() {
               </div>
 
               <h3 className="mt-3 font-semibold">
-                Nominate
+                Add Candidate
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Consultant submits a Premium Talent nomination.
+                Recruiters add qualified teachers directly into the Premium
+                Talent workflow.
               </p>
 
             </div>
@@ -192,27 +197,29 @@ export default function OverviewPage() {
               </div>
 
               <h3 className="mt-3 font-semibold">
-                Approve
+                Eligibility Check
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Manager reviews and approves the nomination.
+                Verify every Premium Talent requirement has been completed
+                before adding the candidate.
               </p>
 
             </div>
-
-            <div>
+                        <div>
 
               <div className="text-5xl font-bold text-[#00A384]">
                 3
               </div>
 
               <h3 className="mt-3 font-semibold">
-                Premium Pool
+                Premium Talent Pool
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Candidate joins the Premium Talent database.
+                Qualified candidates are immediately added to the Premium
+                Talent Pool with no subject limits and enter a 40-day
+                profile review cycle.
               </p>
 
             </div>
@@ -224,11 +231,13 @@ export default function OverviewPage() {
               </div>
 
               <h3 className="mt-3 font-semibold">
-                Match
+                Match to Vacancy
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Match candidates with suitable vacancies.
+                Recruiters match Premium Talent candidates to suitable
+                vacancies using curriculum, availability and recruiter
+                insights.
               </p>
 
             </div>
@@ -240,11 +249,13 @@ export default function OverviewPage() {
               </div>
 
               <h3 className="mt-3 font-semibold">
-                Placement
+                School Submission
               </h3>
 
               <p className="mt-2 text-sm text-gray-300">
-                Candidate is shortlisted for interview.
+                Submit shortlisted candidates to partner schools and
+                continue tracking their progress throughout the recruitment
+                process.
               </p>
 
             </div>
@@ -253,23 +264,25 @@ export default function OverviewPage() {
 
         </div>
 
+        {/* Features */}
+
         <div className="mt-16 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
 
           <h2 className="text-2xl font-bold">
-            Prototype Features
+            Current Prototype Features
           </h2>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
 
             {[
               "Premium Talent Pool",
-              "Candidate Nominations",
-              "Pending Approvals",
+              "Add Candidate",
+              "Eligibility Checklist",
               "Match to Vacancy",
               "Candidate Drawer",
-              "Eligibility Rules",
+              "40-Day Profile Reviews",
+              "Previous Premium Status",
               "Vacancy Ownership",
-              "Profile Freshness Tracking",
             ].map((feature) => (
 
               <div

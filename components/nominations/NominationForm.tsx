@@ -1,16 +1,56 @@
 "use client";
 
+import { useState } from "react";
 import {
-  CheckCircle2,
-  User,
-  GraduationCap,
+  AlertTriangle,
   Briefcase,
   FileCheck,
+  GraduationCap,
   Languages,
   ShieldCheck,
+  User,
 } from "lucide-react";
 
+const checklistItems = [
+  {
+    icon: <Languages size={18} />,
+    text: "Native English Speaker",
+  },
+  {
+    icon: <GraduationCap size={18} />,
+    text: "Bachelor's Degree",
+  },
+  {
+    icon: <ShieldCheck size={18} />,
+    text: "Qualified Teacher Status (QTS)",
+  },
+  {
+    icon: <Briefcase size={18} />,
+    text: "2+ Years International School Experience",
+  },
+  {
+    icon: <FileCheck size={18} />,
+    text: "References Verified",
+  },
+  {
+    icon: <User size={18} />,
+    text: "Teach East Registration Interview Completed",
+  },
+];
+
 export default function NominationForm() {
+  const [checked, setChecked] = useState<boolean[]>(
+    new Array(checklistItems.length).fill(false)
+  );
+
+  const allChecked = checked.every(Boolean);
+
+  const toggleItem = (index: number) => {
+    setChecked((current) =>
+      current.map((value, i) => (i === index ? !value : value))
+    );
+  };
+
   return (
     <div className="grid grid-cols-12 gap-8">
 
@@ -41,33 +81,26 @@ export default function NominationForm() {
           <div>
 
             <label className="mb-2 block text-sm font-semibold">
-              Why should this candidate join the Premium Talent Programme?
+              Recruiter Notes
             </label>
 
             <textarea
-              rows={6}
+              rows={8}
               className="w-full rounded-xl border border-gray-200 p-4"
-              placeholder="Explain why this candidate deserves a place in the Premium Talent Programme..."
+              placeholder="Interview summary, strengths, preferred countries, salary expectations, barriers, or any other important information..."
             />
 
           </div>
 
-          <div>
-
-            <label className="mb-2 block text-sm font-semibold">
-              Consultant Notes
-            </label>
-
-            <textarea
-              rows={5}
-              className="w-full rounded-xl border border-gray-200 p-4"
-              placeholder="Additional comments..."
-            />
-
-          </div>
-
-          <button className="rounded-xl bg-[#00A384] px-8 py-4 font-semibold text-white transition hover:opacity-90">
-            Submit Nomination
+          <button
+            disabled={!allChecked}
+            className={`rounded-xl px-8 py-4 font-semibold text-white transition ${
+              allChecked
+                ? "bg-[#00A384] hover:opacity-90"
+                : "cursor-not-allowed bg-gray-300"
+            }`}
+          >
+            Add to Premium Talent
           </button>
 
         </div>
@@ -85,85 +118,63 @@ export default function NominationForm() {
           </h2>
 
           <p className="mt-2 text-sm text-gray-500">
-            Every requirement must be completed.
+            Every requirement must be verified before adding the candidate.
           </p>
 
-          <div className="mt-6 space-y-5">
+          <div className="mt-6 space-y-4">
 
-            <Checklist
-              icon={<Languages size={18} />}
-              text="Native English Speaker"
-            />
+            {checklistItems.map((item, index) => (
 
-            <Checklist
-              icon={<GraduationCap size={18} />}
-              text="Bachelor's Degree"
-            />
+              <label
+                key={item.text}
+                className="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-100 p-3 transition hover:bg-gray-50"
+              >
 
-            <Checklist
-              icon={<ShieldCheck size={18} />}
-              text="Qualified Teacher Status (QTS)"
-            />
+                <input
+                  type="checkbox"
+                  checked={checked[index]}
+                  onChange={() => toggleItem(index)}
+                  className="h-5 w-5 accent-[#00A384]"
+                />
 
-            <Checklist
-              icon={<Briefcase size={18} />}
-              text="2+ Years Experience"
-            />
+                <div className="rounded-xl bg-[#E8F8F4] p-2 text-[#00A384]">
+                  {item.icon}
+                </div>
 
-            <Checklist
-              icon={<FileCheck size={18} />}
-              text="References Verified"
-            />
+                <span className="text-sm font-medium">
+                  {item.text}
+                </span>
 
-            <Checklist
-              icon={<User size={18} />}
-              text="Teach East Interview Passed"
-            />
+              </label>
+
+            ))}
 
           </div>
 
         </div>
 
-        <div className="rounded-3xl bg-[#FFF8EB] p-6">
+        <div className="rounded-3xl border border-amber-300 bg-[#FFF8EB] p-6">
 
           <div className="flex items-center gap-3">
 
-            <CheckCircle2 className="text-[#F59E0B]" />
+            <AlertTriangle className="text-amber-500" />
 
             <h3 className="font-semibold">
-              Manager Approval Required
+              Before Adding
             </h3>
 
           </div>
 
-          <p className="mt-3 text-sm text-gray-600">
-            Once submitted, this nomination is sent to a manager for approval.
-            Only approved candidates become part of the Premium Talent Programme.
+          <p className="mt-3 text-sm leading-6 text-gray-700">
+            Please ensure every eligibility requirement has been fully
+            verified. Premium Talent candidates are added immediately and
+            remain active for a 40-day review cycle before a follow-up is
+            required.
           </p>
 
         </div>
 
       </div>
-
-    </div>
-  );
-}
-
-function Checklist({
-  icon,
-  text,
-}: {
-  icon: React.ReactNode;
-  text: string;
-}) {
-  return (
-    <div className="flex items-center gap-3">
-
-      <div className="rounded-xl bg-[#E8F8F4] p-2 text-[#00A384]">
-        {icon}
-      </div>
-
-      <span>{text}</span>
 
     </div>
   );
