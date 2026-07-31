@@ -8,22 +8,44 @@ import {
   UserPlus,
   Briefcase,
   ShieldCheck,
-  LayoutDashboard,
+  Calendar,
+  CheckSquare,
   Users,
-  School,
-  BarChart3,
-  FileText,
-  Bell,
+  Building2,
+  FileCheck,
+  Mail,
+  UserCog,
+  Globe,
+  LifeBuoy,
 } from "lucide-react";
 
-const demoPages = [
+const homePages = [
   {
-    name: "Overview",
+    name: "Consultant",
     href: "/overview",
     icon: Home,
   },
   {
-    name: "Premium Talent",
+    name: "Resourcer",
+    href: "/overview-v2",
+    icon: Home,
+  },
+  {
+    name: "Calendar",
+    href: "/calendar",
+    icon: Calendar,
+  },
+  {
+    name: "Tasks",
+    href: "#",
+    icon: CheckSquare,
+    disabled: true,
+  },
+];
+
+const premiumTalentPages = [
+  {
+    name: "Premium Talent Pool",
     href: "/premium-talent",
     icon: Star,
   },
@@ -44,33 +66,74 @@ const demoPages = [
   },
 ];
 
-const placeholderPages = [
+const talentPages = [
   {
-    name: "Dashboard",
-    icon: LayoutDashboard,
+    name: "Jobs",
+    href: "#",
+    icon: Briefcase,
+    disabled: true,
   },
   {
-    name: "Candidates",
+    name: "Interviews",
+    href: "#",
+    icon: Calendar,
+    disabled: true,
+  },
+  {
+    name: "Offers",
+    href: "#",
     icon: Users,
+    disabled: true,
   },
   {
-    name: "Schools",
-    icon: School,
-  },
-  {
-    name: "Analytics",
-    icon: BarChart3,
-  },
-  {
-    name: "Reports",
-    icon: FileText,
-  },
-  {
-    name: "Notifications",
-    icon: Bell,
+    name: "Visa",
+    href: "#",
+    icon: FileCheck,
+    disabled: true,
   },
 ];
 
+const internalPages = [
+  {
+    name: "Candidate Pool",
+    href: "#",
+    icon: Users,
+    disabled: true,
+  },
+  {
+    name: "Clients",
+    href: "#",
+    icon: Building2,
+    disabled: true,
+  },
+  {
+    name: "Compliance",
+    href: "#",
+    icon: FileCheck,
+    disabled: true,
+  },
+  {
+    name: "Mailshot",
+    href: "#",
+    icon: Mail,
+    disabled: true,
+  },
+];
+
+const managementPages = [
+  {
+    name: "Users",
+    href: "#",
+    icon: UserCog,
+    disabled: true,
+  },
+  {
+    name: "Career Site",
+    href: "#",
+    icon: Globe,
+    disabled: true,
+  },
+];
 export default function Sidebar() {
   const pathname = usePathname();
 
@@ -90,74 +153,178 @@ export default function Sidebar() {
         </Link>
 
         <p className="mt-2 text-sm text-gray-400">
-          Premium Talent Module
+          Recruitment Platform Prototype
         </p>
 
       </div>
 
-      <nav className="flex-1 space-y-10 px-5 py-8">
+      <nav className="flex-1 overflow-y-auto px-5 py-8">
 
-        {/* Demo Workflow */}
+        {/* Home */}
 
-        <div>
+        <SidebarSection title="Home">
 
-          <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
-            Demo Workflow
-          </p>
+          {homePages.map((item) => {
 
-          <div className="space-y-2">
+            const Icon = item.icon;
 
-            {demoPages.map((item) => {
-              const Icon = item.icon;
-              const active = pathname === item.href;
-
+            if (item.disabled) {
               return (
-                <Link
+                <SidebarPlaceholder
                   key={item.name}
-                  href={item.href}
-                  className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition ${
-                    active
-                      ? "bg-[#00A384] text-white shadow-lg"
-                      : "text-gray-300 hover:bg-white/10"
-                  }`}
-                >
-                  <Icon size={18} />
-                  {item.name}
-                </Link>
+                  icon={<Icon size={18} />}
+                  name={item.name}
+                />
               );
-            })}
+            }
 
-          </div>
+            return (
+              <SidebarLink
+                key={item.name}
+                href={item.href}
+                icon={<Icon size={18} />}
+                active={pathname === item.href}
+              >
+                {item.name}
+              </SidebarLink>
+            );
 
-        </div>
+          })}
 
-        {/* Future Platform */}
+        </SidebarSection>
 
-        <div>
+        {/* Premium Talent */}
 
-          <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
-            Future Platform
-          </p>
+        <SidebarSection title="Premium Talent">
 
-          <div className="space-y-2">
+          {premiumTalentPages.map((item) => {
 
-            {placeholderPages.map((item) => {
-              const Icon = item.icon;
+            const Icon = item.icon;
 
+            return (
+              <SidebarLink
+                key={item.name}
+                href={item.href}
+                icon={<Icon size={18} />}
+                active={pathname === item.href}
+              >
+                {item.name}
+              </SidebarLink>
+            );
+
+          })}
+
+        </SidebarSection>
+
+        {/* Talent & Recruitment */}
+
+        <SidebarSection title="Talent & Recruitment">
+
+          {talentPages.map((item) => {
+
+            const Icon = item.icon;
+
+            if (item.disabled) {
               return (
-                <div
+                <SidebarPlaceholder
                   key={item.name}
-                  className="flex cursor-not-allowed items-center gap-3 rounded-xl px-4 py-3 text-gray-500"
-                >
-                  <Icon size={18} />
-                  {item.name}
-                </div>
+                  icon={<Icon size={18} />}
+                  name={item.name}
+                />
               );
-            })}
+            }
 
-          </div>
+            return (
+              <SidebarLink
+                key={item.name}
+                href={item.href}
+                icon={<Icon size={18} />}
+                active={pathname === item.href}
+              >
+                {item.name}
+              </SidebarLink>
+            );
 
-        </div>
+          })}
+
+        </SidebarSection>
+
+        {/* Internal */}
+
+        <SidebarSection title="Internal">
+
+          {internalPages.map((item) => {
+
+            const Icon = item.icon;
+
+            if (item.disabled) {
+              return (
+                <SidebarPlaceholder
+                  key={item.name}
+                  icon={<Icon size={18} />}
+                  name={item.name}
+                />
+              );
+            }
+
+            return (
+              <SidebarLink
+                key={item.name}
+                href={item.href}
+                icon={<Icon size={18} />}
+                active={pathname === item.href}
+              >
+                {item.name}
+              </SidebarLink>
+            );
+
+          })}
+
+        </SidebarSection>
+
+        {/* Management */}
+
+        <SidebarSection title="Management">
+
+          {managementPages.map((item) => {
+
+            const Icon = item.icon;
+
+            if (item.disabled) {
+              return (
+                <SidebarPlaceholder
+                  key={item.name}
+                  icon={<Icon size={18} />}
+                  name={item.name}
+                />
+              );
+            }
+
+            return (
+              <SidebarLink
+                key={item.name}
+                href={item.href}
+                icon={<Icon size={18} />}
+                active={pathname === item.href}
+              >
+                {item.name}
+              </SidebarLink>
+            );
+
+          })}
+
+        </SidebarSection>
+
+        {/* Help */}
+
+        <SidebarSection title="Help & Support">
+
+          <SidebarPlaceholder
+            icon={<LifeBuoy size={18} />}
+            name="Help & Support"
+          />
+
+        </SidebarSection>
 
       </nav>
 
@@ -172,7 +339,7 @@ export default function Sidebar() {
           </p>
 
           <p className="mt-1 font-semibold">
-            Premium Talent Module
+            Teach East Platform
           </p>
 
           <p className="mt-1 text-xs text-gray-500">
@@ -184,5 +351,73 @@ export default function Sidebar() {
       </div>
 
     </aside>
+  );
+}
+interface SidebarSectionProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+function SidebarSection({
+  title,
+  children,
+}: SidebarSectionProps) {
+  return (
+    <div className="mb-10">
+
+      <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+        {title}
+      </p>
+
+      <div className="space-y-2">
+        {children}
+      </div>
+
+    </div>
+  );
+}
+
+interface SidebarLinkProps {
+  href: string;
+  active: boolean;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}
+
+function SidebarLink({
+  href,
+  active,
+  icon,
+  children,
+}: SidebarLinkProps) {
+  return (
+    <Link
+      href={href}
+      className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition ${
+        active
+          ? "bg-[#00A384] text-white shadow-lg"
+          : "text-gray-300 hover:bg-white/10"
+      }`}
+    >
+      {icon}
+      {children}
+    </Link>
+  );
+}
+
+interface SidebarPlaceholderProps {
+  icon: React.ReactNode;
+  name: string;
+}
+
+function SidebarPlaceholder({
+  icon,
+  name,
+}: SidebarPlaceholderProps) {
+  return (
+    <div className="flex cursor-not-allowed items-center gap-3 rounded-xl px-4 py-3 text-gray-500">
+      {icon}
+      {name}
+    </div>
   );
 }
