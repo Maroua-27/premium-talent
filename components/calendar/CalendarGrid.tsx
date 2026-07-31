@@ -4,11 +4,7 @@ import { useState } from "react";
 import {
   Phone,
   Users,
-  Handshake,
   FileCheck,
-  Plane,
-  GraduationCap,
-  Building2,
 } from "lucide-react";
 
 import EventDetailsDrawer, {
